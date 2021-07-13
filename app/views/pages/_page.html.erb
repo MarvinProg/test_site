@@ -2,18 +2,18 @@
 
 	<div class="page">
 		<h3 class="page-name">
-			<strong>Nmae:</strong>
+			<strong>Name:</strong>
 			<%= page.name %>
 		</h3>
 
 		<p>
 			<strong>Title:</strong>
-			<% page.title %>
+			<%= page.title %>
 		</p>
 
 		<p>
 			<strong>Text:</strong>
-			<% sanitize page.text, tags: %w(a b i), attributes: %w(href) %>
+			<%= sanitize page.text, tags: %w(a b i), attributes: %w(href) %>
 		</p>
 		
 		<p class="page-links">

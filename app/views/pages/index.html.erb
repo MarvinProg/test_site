@@ -4,7 +4,7 @@
 
 <div class="pages">
 	<% @pages.each do |page_hash| %>
-		<%= render 'page', page_hash %>
+		<%= render 'page', page_hash: page_hash %>
 		<% unless page_hash == @pages.last %>
 			<hr>
 		<% end %>

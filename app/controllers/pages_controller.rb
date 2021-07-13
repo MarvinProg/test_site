@@ -22,7 +22,7 @@ class PagesController < ApplicationController
 	end
 
 	def create
-		@page.assing_attributes(page_params)
+		@page.assign_attributes(page_params)
 
 		respond_to do |format|
 			if @page.save
