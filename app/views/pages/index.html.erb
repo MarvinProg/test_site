@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'New page', new_page_path %>
+
+<div class="pages">
+	<% @pages.each do |page_hash| %>
+		<%= render 'page', page_hash %>
+		<% unless page_hash == @pages.last %>
+			<hr>
+		<% end %>
+	<% end %>
+</div>
