@@ -1,6 +1,5 @@
 module PagesHelper
 
-=begin
 def html_to_markdown(with_html)
     with_html.to_s
       .gsub(/<b>(.+?)<\/b>/) { "**#{$1}**" }
@@ -19,7 +18,5 @@ def html_to_markdown(with_html)
         "<a href=#{href}>#{$2}</a>"
       end
   end
-
-=end
 
 end

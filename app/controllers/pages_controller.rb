@@ -42,35 +42,35 @@ class PagesController < ApplicationController
 				format.json { render :show, status: :ok, location: @page }
 			else
 				format.html { render :edit }
-				format.json { render :json @page.errors, status: :unprocessable_entity }
+				format.json { render json: @page.errors, status: :unprocessable_entity }
 			end
 		end
 	end
 
 	def destroy
 		@page.destroy
-		redirect_url = @page.is_root? ? pages_url(@pages.parent)
-		respond_to do |format|
-			format.html { redirect_to redirect_url, notice: 'Page was destoyed.'}
-			format.json { head :no_content }
-		end
+	    redirect_url = @page.is_root? ? pages_url : page_url(@page.parent)
+	    respond_to do |format|
+	      format.html { redirect_to redirect_url, notice: 'Page was destroyed.' }
+	      format.json { head :no_content }
+    	end
 	end
 
 	private
 
-		def set_page
-			@page = Page.find_by_path(params[:path])
-		end
+	def set_page
+		@page = Page.find_by_path(params[:path])
+	end
 
-		def set_new_page
-			@page = Page.new_by_path(params[:path])
-		end
+	def set_new_page
+		@page = Page.new_by_path(params[:path])
+	end
 
-		def page_params
-			text = params.dig(:page, :text)
-			if text.present? 
-				params[:page][:text] = helpers.markdown_to_html(text, request.base_url)
-			end
-			params.require(:page).permit(:name, :title, :text)
+	def page_params
+		text = params.dig(:page, :text)
+		if text.present? 
+			params[:page][:text] = helpers.markdown_to_html(text, request.base_url)
 		end
+		params.require(:page).permit(:name, :title, :text)
+	end
 end
