@@ -56,6 +56,21 @@ class PagesController < ApplicationController
 		end
 	end
 
-	
+	private
 
+		def set_page
+			@page = Page.find_by_path(params[:path])
+		end
+
+		def set_new_page
+			@page = Page.new_by_path(params[:path])
+		end
+
+		def page_params
+			text = params.dig(:page, :text)
+			if text.present? 
+				params[:page][:text] = helpers.markdown_to_html(text, request.base_url)
+			end
+			params.require(:page).permit(:name, :title, :text)
+		end
 end
