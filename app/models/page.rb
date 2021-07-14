@@ -14,6 +14,8 @@ class Page < ApplicationRecord
 			.join('/')
 	end
 
+# Search page by her route path. If page not found call ActiveRecord::RecordNotFound
+
 	def self.find_by_path(path)
 		names = path.to_s.split('/')
 		ids = Page.where(name: names).pluck(:id)

@@ -1,5 +1,7 @@
 module PagesHelper
 
+#Convert text on save and change
+
 def html_to_markdown(with_html)
     with_html.to_s
       .gsub(/<b>(.+?)<\/b>/) { "**#{$1}**" }
@@ -8,6 +10,8 @@ def html_to_markdown(with_html)
         "((#{$1}[#{$2}]))"
       end
   end
+
+#Page text parameters
 
   def markdown_to_html(val, url=nil)
     val.to_s

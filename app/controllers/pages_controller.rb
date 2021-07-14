@@ -58,6 +58,8 @@ class PagesController < ApplicationController
 
 	private
 
+	#Returns the original page
+
 	def set_page
 		@page = Page.find_by_path(params[:path])
 	end
